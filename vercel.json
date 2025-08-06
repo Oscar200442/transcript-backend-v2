@@ -1,17 +1,21 @@
 {
-  "name": "transcript-backend-v2",
-  "version": "1.0.0",
-  "main": "api/transcripts.js",
-  "scripts": {
-    "start": "node api/transcripts.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "puppeteer": "^23.0.2",
-    "translate": "^3.0.0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/transcripts.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/transcripts",
+      "dest": "/api/transcripts.js",
+      "methods": ["POST", "GET"]
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/transcripts.js",
+      "methods": ["POST", "GET"]
+    }
+  ]
 }
